@@ -32,6 +32,7 @@ template_letter = File.read('form_letter.erb')
 erb_template = ERB.new template_letter
 
 contents.each do |row|
+  id = row[0]
   name = row[:first_name]
   zipcode = clean_zip_code(row[:zipcode])
 
@@ -39,5 +40,9 @@ contents.each do |row|
 
   form_letter = erb_template.result(binding)
 
-  puts form_letter
+  Dir.mkdir('output') unless Dir.exist?('output')
+  filename = "output/thanks_#{id}.html"
+  File.open(filename, 'w') do |file|
+    file.puts form_letter
+  end
 end
