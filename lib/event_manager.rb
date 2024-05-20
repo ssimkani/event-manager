@@ -19,6 +19,18 @@ def find_reg_hours(csv)
   arr
 end
 
+def best_times(arr)
+  hash = {}
+  arr.each do |hour|
+    if hash.key?(hour)
+      hash[hour] += 1
+    else
+      hash[hour] = 1
+    end
+  end
+  hash.max_by(hash.length) { |_, value| value }.map(&:first)
+end
+
 def clean_phone_number(phone_number)
   phone_number.delete!('^0-9')
   if phone_number.length < 10 || phone_number.length > 11 || (phone_number.length == 11 && phone_number[0] != '1')
