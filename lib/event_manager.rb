@@ -20,6 +20,18 @@ def find_reg_hours(csv)
   arr
 end
 
+def find_reg_wdays(csv)
+  wdays_registered = []
+  csv.each do |row|
+    reg_date = row[:regdate].gsub('/', ' ').split(' ')
+    mon = reg_date[0].to_i
+    day = reg_date[1].to_i
+    year = "20#{reg_date[2]}".to_i
+    wdays_registered << Date.new(year, mon, day).wday
+  end
+  wdays_registered
+end
+
 def best_times_wdays(arr)
   hash = {}
   arr.each do |element|
