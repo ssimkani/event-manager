@@ -44,6 +44,11 @@ def best_times_wdays(arr)
   hash.max_by(hash.length) { |_, value| value }.map(&:first)
 end
 
+def days_of_week(arr)
+  all_days = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday]
+  arr.map { |day| all_days[day] }
+end
+
 def printing_times_in_order(csv)
   times = best_times(find_reg_hours(csv))
   puts 'The best times to run ads are listed in order:'
