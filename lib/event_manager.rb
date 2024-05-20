@@ -31,6 +31,12 @@ def best_times(arr)
   hash.max_by(hash.length) { |_, value| value }.map(&:first)
 end
 
+def printing_times_in_order(csv)
+  times = best_times(find_reg_hours(csv))
+  puts 'The best times to run ads are listed in order:'
+  times.each { |time| puts "#{time}:00" }
+end
+
 def clean_phone_number(phone_number)
   phone_number.delete!('^0-9')
   if phone_number.length < 10 || phone_number.length > 11 || (phone_number.length == 11 && phone_number[0] != '1')
@@ -68,6 +74,12 @@ end
 
 puts 'EventManager initialized.'
 
+csv = CSV.open(
+  'event_attendees.csv',
+  headers: true,
+  header_converters: :symbol
+)
+
 contents = CSV.open(
   'event_attendees.csv',
   headers: true,
@@ -86,6 +98,8 @@ contents.each do |row|
 
   form_letter = erb_template.result(binding)
   save_thank_you_letter(id, form_letter)
-
-  puts "#{name} #{phone_number} #{legislators}"
 end
+contents.close
+
+printing_times_in_order(csv)
+csv.close
