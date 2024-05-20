@@ -20,13 +20,13 @@ def find_reg_hours(csv)
   arr
 end
 
-def best_times(arr)
+def best_times_wdays(arr)
   hash = {}
-  arr.each do |hour|
-    if hash.key?(hour)
-      hash[hour] += 1
+  arr.each do |element|
+    if hash.key?(element)
+      hash[element] += 1
     else
-      hash[hour] = 1
+      hash[element] = 1
     end
   end
   hash.max_by(hash.length) { |_, value| value }.map(&:first)
