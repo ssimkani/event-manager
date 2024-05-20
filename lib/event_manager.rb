@@ -46,7 +46,9 @@ end
 
 def days_of_week(arr)
   all_days = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday]
-  arr.map { |day| all_days[day] }
+  wdays = arr.map { |day| all_days[day] }
+  all_days.each { |day| wdays.push(day) unless wdays.include?(day) }
+  wdays
 end
 
 def printing_times_wdays_in_order(csv, csv2)
