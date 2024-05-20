@@ -49,9 +49,9 @@ def days_of_week(arr)
   arr.map { |day| all_days[day] }
 end
 
-def printing_times_in_order(csv)
+def printing_times_wdays_in_order(csv, csv2)
   times = best_times_wdays(find_reg_hours(csv))
-  wdays = days_of_week(best_times_wdays(find_reg_wdays(csv)))
+  wdays = days_of_week(best_times_wdays(find_reg_wdays(csv2)))
   puts "The best to worst times to run ads are listed here:\n\n"
   times.each { |time| puts "#{time}:00" }
   puts "\n\nThe best to worst days of the week to run ads are listed here:\n\n"
@@ -101,6 +101,12 @@ csv = CSV.open(
   header_converters: :symbol
 )
 
+csv2 = CSV.open(
+  'event_attendees.csv',
+  headers: true,
+  header_converters: :symbol
+)
+
 contents = CSV.open(
   'event_attendees.csv',
   headers: true,
@@ -122,5 +128,6 @@ contents.each do |row|
 end
 contents.close
 
-printing_times_in_order(csv)
+printing_times_wdays_in_order(csv, csv2)
 csv.close
+csv2.close
