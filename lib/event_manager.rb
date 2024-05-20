@@ -50,9 +50,12 @@ def days_of_week(arr)
 end
 
 def printing_times_in_order(csv)
-  times = best_times(find_reg_hours(csv))
-  puts 'The best times to run ads are listed in order:'
+  times = best_times_wdays(find_reg_hours(csv))
+  wdays = days_of_week(best_times_wdays(find_reg_wdays(csv)))
+  puts "The best to worst times to run ads are listed here:\n\n"
   times.each { |time| puts "#{time}:00" }
+  puts "\n\nThe best to worst days of the week to run ads are listed here:\n\n"
+  wdays.each { |day| puts day }
 end
 
 def clean_phone_number(phone_number)
