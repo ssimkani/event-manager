@@ -1,3 +1,4 @@
+require 'date'
 require 'time'
 require 'csv'
 require 'google/apis/civicinfo_v2'
