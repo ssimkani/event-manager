@@ -16,7 +16,7 @@ def find_reg_hours(csv)
   # Find registration hours from a CSV file.
   #
   # @param [CSV::Table] (csv) The CSV table to extract registration hours from
-  # @return [Array] An array of integers representing the registration hours
+  # @return [Array] A sorted array of integers representing the registration hours
   arr = []
   csv.each do |row|
     reg_time = row[:regdate].split(' ')[1].gsub(':', ' ')
@@ -25,14 +25,14 @@ def find_reg_hours(csv)
     reg_hour = Time.new(1, 1, 1, hour, min).hour
     arr.push(reg_hour)
   end
-  arr
+  arr.sort
 end
 
 def find_reg_wdays(csv)
   # Find days of the week from a CSV file.
   #
   # @param [CSV::Table] (csv) The CSV table to extract days of the week from
-  # @return [Array] An array of integers representing the days of the week
+  # @return [Array] A sorted array of integers representing the days of the week
   wdays_registered = []
   csv.each do |row|
     reg_date = row[:regdate].gsub('/', ' ').split(' ')
@@ -41,7 +41,7 @@ def find_reg_wdays(csv)
     year = "20#{reg_date[2]}".to_i
     wdays_registered << Date.new(year, mon, day).wday
   end
-  wdays_registered
+  wdays_registered.sort
 end
 
 def best_times_wdays(arr)
