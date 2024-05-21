@@ -51,13 +51,15 @@ def days_of_week(hash)
   wdays
 end
 
-def printing_times_wdays_in_order(csv, csv2)
+def writing_times_wdays_to_file(csv, csv2)
   times = best_times_wdays(find_reg_hours(csv))
   wdays = days_of_week(best_times_wdays(find_reg_wdays(csv2)))
-  puts "The best to worst times to run ads are listed here:\n\n"
-  times.each { |time| puts "#{time}:00" }
-  puts "\n\nThe best to worst days of the week to run ads are listed here:\n\n"
-  wdays.each { |day| puts day }
+  File.open('registration_hours.txt', 'w') do |file|
+    times.each { |time, count| file.puts "#{time}:00 : #{count}" }
+  end
+  File.open('registration_wdays.txt', 'w') do |file|
+    wdays.each { |day, count| file.puts "#{day} : #{count}" }
+  end
 end
 
 def clean_phone_number(phone_number)
@@ -130,6 +132,6 @@ contents.each do |row|
 end
 contents.close
 
-printing_times_wdays_in_order(csv, csv2)
+writing_times_wdays_to_file(csv, csv2)
 csv.close
 csv2.close
