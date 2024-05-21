@@ -55,10 +55,20 @@ def writing_times_wdays_to_file(csv, csv2)
   times = best_times_wdays(find_reg_hours(csv))
   wdays = days_of_week(best_times_wdays(find_reg_wdays(csv2)))
   File.open('registration_hours.txt', 'w') do |file|
-    times.each { |time, count| file.puts "#{time}:00 : #{count}" }
+    file.puts '| Time of Day | Number of Registrations |'
+    file.puts '|-------------|-------------------------|'
+    times.each do |time, count|
+      formatted_line = format('|%<time>8s     | %<count>13s           |', time: "#{time}:00", count: count)
+      file.puts formatted_line
+    end
   end
   File.open('registration_wdays.txt', 'w') do |file|
-    wdays.each { |day, count| file.puts "#{day} : #{count}" }
+    file.puts '| Day of the Week | Number of Registrations |'
+    file.puts '|-----------------|-------------------------|'
+    wdays.each do |day, count|
+      formatted_line = format('|%<day>12s     | %<count>12s            |', day: day, count: count)
+      file.puts formatted_line
+    end
   end
 end
 
