@@ -46,7 +46,7 @@ end
 
 def days_of_week(hash)
   all_days = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday]
-  wdays = hash.map { |day, count| [all_days[day], count].to_h }
+  wdays = hash.transform_keys { |day| all_days[day] }
   all_days.each { |day| wdays[day] = 0 unless wdays.include?(day) }
   wdays
 end
