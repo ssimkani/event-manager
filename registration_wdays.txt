@@ -1,9 +1,9 @@
 | Day of the Week | Number of Registrations |
 |-----------------|-------------------------|
-|   Wednesday     |            7            |
-|     Tuesday     |            1            |
-|      Monday     |            2            |
-|    Thursday     |            5            |
 |      Sunday     |            4            |
+|      Monday     |            2            |
+|     Tuesday     |            1            |
+|   Wednesday     |            7            |
+|    Thursday     |            5            |
 |      Friday     |            0            |
 |    Saturday     |            0            |
