@@ -41,13 +41,13 @@ def best_times_wdays(arr)
       hash[element] = 1
     end
   end
-  hash.max_by(hash.length) { |_, value| value }.map(&:first)
+  hash
 end
 
-def days_of_week(arr)
+def days_of_week(hash)
   all_days = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday]
-  wdays = arr.map { |day| all_days[day] }
-  all_days.each { |day| wdays.push(day) unless wdays.include?(day) }
+  wdays = hash.map { |day, count| [all_days[day], count].to_h }
+  all_days.each { |day| wdays[day] = 0 unless wdays.include?(day) }
   wdays
 end
 
