@@ -175,6 +175,9 @@ contents.each do |row|
   id = row[0]
   name = row[:first_name]
   phone_number = clean_phone_number(row[:homephone])
+  File.open('phone_numbers.txt', 'a') do |file|
+    file.puts "#{name}: #{phone_number}"
+  end
   zipcode = clean_zip_code(row[:zipcode])
   legislators = legislators_by_zipcode(zipcode)
 
